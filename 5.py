@@ -16,3 +16,9 @@ def hash(s):
         hash_value += d[c] *p **i
         i+=1
     return hash_value % m
+# encoding='utf-8' убрали и ; заменили  потому что файл другой
+with open('0students.csv') as file,open('0students_new.csv','w') as new_file:
+    data = list(csv.reader(file,delimiter=';'))
+    res = csv.writer(new_file,delimiter=';')
+    print(data[1])
+    # for stroka in data[1:]:
