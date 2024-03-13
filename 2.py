@@ -8,7 +8,7 @@ def vstavka(data):
 
 
 
-
+12
 #открываем файл '0students.csv'
 with open('0students.csv') as f:
     data = list(csv.reader(f,delimiter=';'))
