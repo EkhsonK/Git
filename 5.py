@@ -21,4 +21,4 @@ with open('0students.csv') as file,open('0students_new.csv','w') as new_file:
     data = list(csv.reader(file,delimiter=';'))
     res = csv.writer(new_file,delimiter=';')
     print(data[1])
-    # for stroka in data[1:]:
+    for stroka in data[1:]:
