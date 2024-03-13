@@ -11,6 +11,7 @@ def hash(s):
     s = s.replace(' ','')
     p = 67
     m = (10**9)+9
+    i  =0
     hash_value = 0
     for c in s:
         hash_value += d[c] *p **i
@@ -20,5 +21,9 @@ def hash(s):
 with open('0students.csv') as file,open('0students_new.csv','w') as new_file:
     data = list(csv.reader(file,delimiter=';'))
     res = csv.writer(new_file,delimiter=';')
-    print(data[1])
+    res.writerow(data[0])
     for stroka in data[1:]:
+        fio =  stroka[1]
+        h = hash(fio)
+        stroka[0] = h
+        res.writerow(stroka)
