@@ -1,17 +1,14 @@
 import csv
 
-#функция поиска
-def search(i_id,data):
+def search(iid, data):
     for stroka in data:
-        if stroka[2] == i_id:
+        if stroka[2] == iid:
             return stroka
-    return None
-
 
 
 #открываем файл '0students.csv'
-with open('0students.csv') as f:
-    data = list(csv.reader(f,delimiter=';'))
+with open('students.csv',encoding='utf-8') as f:
+    data = list(csv.reader(f,delimiter=','))
     i_id = input()
     while i_id != 'СТОП':
         res = search(i_id,data)

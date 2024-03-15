@@ -1,22 +1,27 @@
 import csv
 
-#открываем файл '0students.csv'
-with open('0students.csv') as f, open('0students_new.csv','w') as nf:
-    data = list(csv.reader(f,delimiter=';'))
-    chel = "Гарный Никита"
+#открываем файл и создаём новый
+with open('students.csv',encoding='utf-8') as file,open('students_new1.csv','w',newline='') as new_file:
+    data = list(csv.reader(file,delimiter=','))
+    res = csv.writer(new_file, delimiter=';')
+
+    # находим ученика
+    chel = 'Хадаров Владимир'
     a = []
-
-    # находим нужного ученика
     for stroka in data[1:]:
-        if chel in stroka:
-            print(f"Ты получил: {stroka[-1]},за проект - {stroka[2]}")
-        if stroka[-1] != '':
-            a.append(int(stroka[-1]))
-    mean = round(sum(a) / len(a),3)
+        if chel in stroka[1]:
+            print(f"Ты получил: {stroka[-1]}, за проект - {stroka[2]}")
+        if stroka[4] != 'None':
+            a.append(int(stroka[4]))
 
-    #переписываем пропуски
-    res = csv.writer(nf,delimiter=';')
-    for stroka in data:
-        if stroka[-1] == '':
-            stroka[-1] = str(mean)
-        res.writerow(stroka)
+    # ищем среднее
+    sred = round(sum(a)/len(a),3)
+
+    # заполняем файл students_new.csv
+    res.writerow(data[0])
+    for stroka in data[1:]:
+        if stroka[4] != 'None':
+            res.writerow(stroka)
+        else:
+            stroka[4] = sred
+            res.writerow(stroka)
